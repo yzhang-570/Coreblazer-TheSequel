@@ -1,10 +1,12 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Yarn.Unity;
 
 public class CreditsAnimation : MonoBehaviour
 {
     [SerializeField] GameObject creditUI;
+    [SerializeField] DialogueRunner dialogueRunner;
     private RectTransform canvasTransform;
     private float animationDuration;
 
@@ -19,6 +21,7 @@ public class CreditsAnimation : MonoBehaviour
         canvasTransform = creditUI.GetComponent<RectTransform>();
         animationDuration = 15f;
 
+        dialogueRunner.AddCommandHandler("roll_credits", rollCredits);
         //rollCredits();
     }
 

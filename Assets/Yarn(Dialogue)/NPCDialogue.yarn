@@ -18,15 +18,14 @@ title: BabyBear
 {$npcName}: It’s quite cold now…but we can still have a lot of fun!
 {$npcName}: Like playing together?
 
--> [Take memory]
+-> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
     {$npcName}: I remember that I…I? What did I do?
     {$npcName}: What did I feel?
     {$npcName}: I’m…I’m tired…
     <<remove_color 9 >>
     <<start_fade "{$npcName}">>
--> leave
--> 3rd option for test
+-> Leave
 ===
 
 title: Adventurer
@@ -39,7 +38,7 @@ title: Adventurer
 {$npcName}: That’s what my mentor always said.
 {$npcName}: Need a hand?
 
--> [Take memory]
+-> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
     {$npcName}: W-wait...
     {$npcName}: What did you do?
@@ -49,7 +48,7 @@ title: Adventurer
     {$npcName}: Never wake up again.
     <<remove_color 11 >>
     <<start_fade "{$npcName}">>
--> leave
+-> Leave
 ===
 
 title: LittleGirl
@@ -57,10 +56,10 @@ title: LittleGirl
 <<set $npcName = "Little Girl">>
 <<set $acceptedMemoryType1 = "Resilience">>
 {$npcName}: I told her I’d wait right here. If I move, she might not find me again.
-{$npcName}: Everyone else left. I don’t want to forget.
--> [Take memory]
+{$npcName}: I don’t want to forget. <b>There's no point in moving on.</b>
+-> [Take Memory]
     {$npcName}: I won’t let you have it. It’s the only memory I have left.
-    -> [Offer Resilience memory]
+    -> [Offer Memory]
         <<if check_has_memory_type($acceptedMemoryType1)>>
             <<prompt_memory_selection "{$npcName}" "{$acceptedMemoryType1}">>
             {$npcName}: ...She wouldn’t want me to be alone, would she?
@@ -68,7 +67,7 @@ title: LittleGirl
             {$npcName}: I remember in that field over there…there should be flowers.
             <<show_color 10 >>
         <<else>>
-            You do not have the appropriate memory
+            You do not have the appropriate memory. Try exploring the world for more.
         <<endif>>
 -> Leave
 ===
@@ -80,10 +79,10 @@ title: ElderlyGardener
 <<set $acceptedMemoryType1 = "Wonder">>
 <<set $memoryToReceive = "The Grove">>
 <<set $memoryToTake = "The Bloom">>
-{$npcName}: ...It used to feel like magic, didn’t it? Seeds turning into something more.
+{$npcName}: <b>...It used to feel like magic, didn’t it?</b> Seeds turning into something more.
 {$npcName}: I remember the shapes. The motions. But not why.
 {$npcName}: Why did I ever plant anything at all?
--> [Offer wonder memory] (wants {$acceptedMemoryType1}) //just for debugging
+-> [Offer Memory]
     <<if check_has_memory_type($acceptedMemoryType1)>>
         <<prompt_memory_selection "{$npcName}" "{$acceptedMemoryType1}">>
         {$npcName}: Oh... oh, I see now.
@@ -92,7 +91,7 @@ title: ElderlyGardener
         <<take_memory "{$npcName}" "{$memoryToReceive}">>
         <<show_color 12 >>
     <<else>>
-        You do not have the appropriate memory
+        You do not have the appropriate memory. Try exploring the world for more.
     <<endif>>
 -> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
@@ -103,7 +102,7 @@ title: ElderlyGardener
     {$npcName}: In a world like this?
     <<remove_color 12 >>
     <<start_fade "{$npcName}">>
--> leave
+-> Leave
 ===
 title: Bird
 ---
@@ -114,8 +113,8 @@ title: Bird
 {$npcName}: I’m sad.
 {$npcName}: Why was I born with these feathers?
 {$npcName}: My colors — they always stared. I stopped calling back.
-{$npcName}: Is there truly a point to call out to others anymore?
--> [Offer wonder memory] (wants {$acceptedMemoryType1}) //just for debugging
+{$npcName}: <b>Is there truly a point to call out to others anymore?</b>
+-> [Offer Memory]
     <<if check_has_memory_type($acceptedMemoryType1)>>
         <<prompt_memory_selection "{$npcName}" "{$acceptedMemoryType1}">>
         {$npcName}: Maybe... maybe I didn’t have to match.
@@ -130,7 +129,7 @@ title: Bird
         <<take_memory "{$npcName}" "{$memoryToReceive}">>
         <<show_color 14 >>
     <<else>>
-        You do not have the appropriate memory
+        You do not have the appropriate memory. Try exploring the world for more.
     <<endif>>
 -> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
@@ -141,7 +140,7 @@ title: Bird
     {$npcName}: Maybe I was never meant to be.
     <<remove_color 14>>
     <<start_fade "{$npcName}">>
--> leave
+-> Leave
 ===
 title: Robot
 ---
@@ -149,9 +148,9 @@ title: Robot
 <<set $acceptedMemoryType1 = "Love">> 
 <<set $memoryToReceive = "The Lunch">>
 <<set $memoryToTake = "The Lunch">>
-{$npcName}: ...Signal incomplete. Awaiting return.
+{$npcName}: ...Signal incomplete. <b>Awaiting return.</b>
 {$npcName}: Status: waiting. Purpose: unknown.
--> [Offer wonder memory] (wants {$acceptedMemoryType1}) //just for debugging
+-> [Offer Memory]
     <<if check_has_memory_type($acceptedMemoryType1)>>
         <<prompt_memory_selection "{$npcName}" "{$acceptedMemoryType1}">>
         {$npcName}: ...They laughed when I made the sandwich wrong.
@@ -162,7 +161,7 @@ title: Robot
         <<take_memory "{$npcName}" "{$memoryToReceive}">>
         <<show_color 16 >>
     <<else>>
-        You do not have the appropriate memory
+        You do not have the appropriate memory. Try exploring the world for more.
     <<endif>>
 -> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
@@ -173,7 +172,7 @@ title: Robot
     {$npcName}: But no one ever…cared to return.
     <<remove_color 16>>
     <<start_fade "{$npcName}">>
--> leave
+-> Leave
 ===
 
 title: Sapling
@@ -182,10 +181,10 @@ title: Sapling
 <<set $acceptedMemoryType1 = "Resilience">>
 <<set $acceptedMemoryType2 = "Wonder">>
 <<set $memoryToTake = "The Reach">>
-{$npcName}: Is there something... above? Is it real?
-{$npcName}: But there hasn’t been anything so far.
+{$npcName}: Is there something... above? <b>Is it real?</b>
+{$npcName}: <b>But there hasn’t been anything so far.</b>
 {$npcName}: Just darkness and nothingness.
--> select 2 memories
+-> [Offer Memories]
     <<if check_has_memory_type($acceptedMemoryType1) && check_has_memory_type($acceptedMemoryType2)>>
         <<prompt_memory_selection "{$npcName}" "{$acceptedMemoryType1}" "{$acceptedMemoryType2}">>
         {$npcName}: ...So even the dark can birth dreams.
@@ -193,7 +192,7 @@ title: Sapling
         {$npcName}: Maybe...just maybe I’ll see the light.
         <<show_color 17 >>
     <<else>>
-        You do not have the appropriate memory
+        You do not have the appropriate memory. Try exploring the world for more.
     <<endif>>
 -> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
@@ -203,7 +202,7 @@ title: Sapling
     {$npcName}: Only stillness.
     <<remove_color 17>>
     <<start_fade "{$npcName}">>
--> leave
+-> Leave
 ===
 
 title: Storyteller
@@ -212,10 +211,10 @@ title: Storyteller
 <<set $acceptedMemoryType1 = "Community">>
 <<set $acceptedMemoryType2 = "Joy">>
 <<set $memoryToTake = "The World">>
-{$npcName}: Once, I shared tales from dawn to dusk.
+{$npcName}: Once, I <b>shared tales</b> from dawn to dusk.
 {$npcName}: But now? The wind doesn’t carry my voice like it used to… It only takes.
-{$npcName}: And I've forgotten how to give.
--> select 2 memories
+{$npcName}: And <b>I've forgotten how to give.</b>
+-> [Offer Memories]
     <<if check_has_memory_type($acceptedMemoryType1) && check_has_memory_type($acceptedMemoryType2)>>
         <<prompt_memory_selection "{$npcName}" "{$acceptedMemoryType1}" "{$acceptedMemoryType2}">>
         {$npcName}: That laugh... that sound! It’s like sunshine for the soul.
@@ -225,7 +224,7 @@ title: Storyteller
         {$npcName}: I’ll remember you, my savior!
         <<show_color 18>>
     <<else>>
-        You do not have the appropriate memory
+        You do not have the appropriate memory. Try exploring the world for more.
     <<endif>>
 -> [Take Memory]
     <<take_memory "{$npcName}" "{$memoryToTake}">>
@@ -236,14 +235,12 @@ title: Storyteller
         {$npcName}: I’ll remember you, my savior!
     <<remove_color 18>>
     <<start_fade "{$npcName}">>
--> leave
+-> Leave
 ===
-title: Cube
----
-<<obtain_memory "The Reach">>
-===
+
 title: Start
 ---
+<<disable_UI>>
 <<play_bgm "cutscene">>
 What are memories?
 Fragments of time. 
@@ -256,6 +253,8 @@ Collect what remains.
 ===
 title: Bad
 ---
+<<special_format true>>
+<<disable_UI>>
 <<play_bgm "badEnd">>
 Yes...yes, you’ve done well.
 Every memory, mine again. Every thread pulled clean.
@@ -271,9 +270,12 @@ title: BadEnd
 What are memories?
 Tools. Power. Leverage. The illusion of connection.
 You gathered them all...and gave nothing.
+<<roll_credits>>
 ===
 title: Good
 ---
+<<special_format true>>
+<<disable_UI>>
 <<play_bgm "cutscene">>
 You...gave them away?
 I asked you to collect, not squander.
@@ -288,4 +290,6 @@ They are gifts. Acts of connection.
 They bind people. They build worlds.
 In giving, you created something no one could take.
 A world threaded together by interconnected memories.
+<<disable_image>>
+<<start_panning>>
 ===

@@ -6,11 +6,13 @@ public class InfoButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] GameObject infoPopup;
     public void OnPointerEnter(PointerEventData mouseData)
     {
+        Debug.Log("mouse hover enter");
         infoPopup.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData mouseData)
     {
+        Debug.Log("mouse hover exit");
         infoPopup.SetActive(false);
     }
 }

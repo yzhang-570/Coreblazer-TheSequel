@@ -9,6 +9,7 @@ public class CutsceneManager : MonoBehaviour
 {
     [SerializeField] FinalPan finalPanScript;
     [SerializeField] CreditsAnimation creditsScript;
+    [SerializeField] UIInputHandler uiHandlerScript;
     public GameObject linePresenter, lineBG, BG;
     public DialogueRunner dialogueRunner;
     //public DialogueManager dialogueManager;
@@ -29,22 +30,18 @@ public class CutsceneManager : MonoBehaviour
         badEnd = badCutscene.GetComponent<VideoPlayer>();
         goodEnd = goodCutscene.GetComponent<VideoPlayer>();
         SpecialFormat(true);
+
         dialogueRunner.AddCommandHandler<bool>("special_format", SpecialFormat);
         dialogueRunner.AddCommandHandler("fade_out_text", FadeOut);
         dialogueRunner.AddCommandHandler<string>("play_cutscene", PlayCutscene);
+        dialogueRunner.AddCommandHandler("disable_image", disableImage);
+
         starting.loopPointReached += OnVideoEnd;
         badEnd.loopPointReached += OnVideoEnd;
         goodEnd.loopPointReached += OnVideoEnd;
     }
     public CanvasGroup bgCanvasGroup; // Drag your BG panel here in the inspector
     public float fadeOutDuration = 0.5f; // Adjustable fade time
-    private void Update()
-    {
-        if (finalPanScript.getPanFinished())
-        {
-            creditsScript.rollCredits();
-        }
-    }
     public void PlayCutscene(string name)
     {
         player.SetMovementEnabled(false);
@@ -108,6 +105,8 @@ public class CutsceneManager : MonoBehaviour
             bgCanvasGroup.alpha = 0f;
             SpecialFormat(false);
             player.SetMovementEnabled(true);
+
+            uiHandlerScript.enableUI();
         }
         if (vp == badEnd)
         {
@@ -166,4 +165,6 @@ public class CutsceneManager : MonoBehaviour
 
         dialogue.color = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);
     }
+
+    public void disableImage() => bgCanvasGroup.alpha = 0f;
 }

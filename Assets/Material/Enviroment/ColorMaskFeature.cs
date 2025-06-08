@@ -65,18 +65,18 @@ public class ColorMaskFeature : ScriptableRendererFeature
             if (renderingData.cameraData.renderType == CameraRenderType.Overlay)
                 return;
             if (material == null) return;
-                CommandBuffer cmd = CommandBufferPool.Get("ColorMaskPass");
+            CommandBuffer cmd = CommandBufferPool.Get("ColorMaskPass");
 
-                RenderTargetIdentifier source = cameraColorTarget;
-                int tempRTID = Shader.PropertyToID("_TempColorMaskRT");
-                cmd.GetTemporaryRT(tempRTID, renderingData.cameraData.cameraTargetDescriptor);
+            RenderTargetIdentifier source = cameraColorTarget;
+            int tempRTID = Shader.PropertyToID("_TempColorMaskRT");
+            cmd.GetTemporaryRT(tempRTID, renderingData.cameraData.cameraTargetDescriptor);
 
-                cmd.Blit(source, tempRTID);
-                cmd.Blit(tempRTID, source, material);
+            cmd.Blit(source, tempRTID);
+            cmd.Blit(tempRTID, source, material);
 
-                cmd.ReleaseTemporaryRT(tempRTID);
-                context.ExecuteCommandBuffer(cmd);
-                CommandBufferPool.Release(cmd);
+            cmd.ReleaseTemporaryRT(tempRTID);
+            context.ExecuteCommandBuffer(cmd);
+            CommandBufferPool.Release(cmd);
         }
 
         public override void OnCameraCleanup(CommandBuffer cmd) { }

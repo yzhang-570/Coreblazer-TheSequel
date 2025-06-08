@@ -23,6 +23,8 @@ public class UIInputHandler : MonoBehaviour
     [SerializeField] GameObject dialogueUI;
     [SerializeField] GameObject blockPuzzle;
     [SerializeField] GameObject controlsUI;
+    [SerializeField] GameObject memoriesToggleUI;
+    [SerializeField] GameObject questProgressUI;
     GraphicRaycaster UI_raycaster;
 
     PointerEventData click_data;
@@ -45,6 +47,7 @@ public class UIInputHandler : MonoBehaviour
     private void Start()
     {
         dialogueRunner.AddCommandHandler<string, string, string>("prompt_memory_selection", PromptMemorySelection);
+        dialogueRunner.AddCommandHandler("disable_UI", disableUI);
     }
 
     void Update()
@@ -187,16 +190,18 @@ public class UIInputHandler : MonoBehaviour
         //Debug.Log(messageWindow.name + " hidden");
     }
 
-    public void toggleControlsUI(bool on)
+    public void disableUI()
     {
-        if(on)
-        {
-            controlsUI.SetActive(true);
-        }
-        else
-        {
-            controlsUI.SetActive(false);
-        }
+        controlsUI.SetActive(false);
+        memoriesToggleUI.SetActive(false);
+        questProgressUI.SetActive(false);
+    }
+
+    public void enableUI()
+    {
+        controlsUI.SetActive(true);
+        memoriesToggleUI.SetActive(true);
+        questProgressUI.SetActive(true);
     }
 
 
