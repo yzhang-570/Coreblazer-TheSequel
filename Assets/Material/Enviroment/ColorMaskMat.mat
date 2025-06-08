@@ -33,13 +33,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CenterCount: 21
+    - _CenterCount: 22
     - _Radius: 1
     - _Radius0: 0.36
     - _Radius1: 0.29
     - _Radius2: 0
     - _Radius3: 0
-    - _RevealAmount: 0
+    - _RevealAmount: 1
     - _Visibility: 1
     - _WhiteStrength: 0.799
     m_Colors:
